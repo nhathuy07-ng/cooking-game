@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bhej6qrfxabkp"]
+
+[ext_resource type="PackedScene" uid="uid://bib3poxl0wgeh" path="res://components/pot.tscn" id="1_vscqt"]
+[ext_resource type="PackedScene" uid="uid://cty432t1o66bd" path="res://components/water-jug.tscn" id="2_yfcek"]
+[ext_resource type="PackedScene" uid="uid://bkvs3t0i2h0l2" path="res://assets/water-tap.tscn" id="3_gh3nl"]
+
+[node name="MainStage" type="Node2D" unique_id=1461781538]
+
+[node name="Pot" parent="." unique_id=872421973 groups=["water-drainable"] instance=ExtResource("1_vscqt")]
+position = Vector2(115, 154)
+
+[node name="Pot2" parent="." unique_id=53362776 groups=["water-drainable"] instance=ExtResource("1_vscqt")]
+position = Vector2(129, 390)
+
+[node name="WaterJug" parent="." unique_id=865396040 instance=ExtResource("2_yfcek")]
+position = Vector2(416, 233)
+
+[node name="WaterTap" parent="." unique_id=866408562 instance=ExtResource("3_gh3nl")]
+position = Vector2(527, 339)

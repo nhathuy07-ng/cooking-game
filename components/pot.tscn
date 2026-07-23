@@ -1,0 +1,300 @@
+[gd_scene format=3 uid="uid://bib3poxl0wgeh"]
+
+[ext_resource type="Script" uid="uid://tva0qb3thnd1" path="res://components/pot.gd" id="1_0sjjt"]
+[ext_resource type="Texture2D" uid="uid://culrkrpty6f3l" path="res://assets/pot.png" id="1_c6j22"]
+[ext_resource type="Texture2D" uid="uid://8xhe74cqhdq7" path="res://assets/stirring-stuff.png" id="2_birj5"]
+[ext_resource type="Texture2D" uid="uid://bgk4okco3aq1s" path="res://assets/Ellipse 2 (1).png" id="3_vkp31"]
+[ext_resource type="Texture2D" uid="uid://jt5wwmh3k6l1" path="res://assets/bubbles.png" id="4_0sjjt"]
+[ext_resource type="Texture2D" uid="uid://c5228cuf68uum" path="res://assets/smoke-particle.png" id="6_nep7w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn1om"]
+radius = 38.0
+height = 182.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn1om"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c6j22")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_birj5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stir/Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stir:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_d1m4l"]
+resource_name = "stirring"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stir/Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stir:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0.10471976, -0.2525, 0.047996555, 0.2525, -0.047996555, -0.08726646, -0.2525, 0.04379455, 0.2525, -0.04379455, 0.10471976, -0.2475, -0.047996555, 0.2475, 0.047996555),
+"times": PackedFloat32Array(0, 1.01, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vkp31"]
+_data = {
+&"RESET": SubResource("Animation_birj5"),
+&"stirring": SubResource("Animation_d1m4l")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_vkp31"]
+_data = {
+"points": PackedVector2Array(-0.25573087, -9.513188, 0.25573087, 9.513188, 18.064516, 10.999996, 0, 0, 0, 0, 0, 20.999996, -0.06393272, 5.499812, 0.06393272, -5.499812, -18.494623, 10.999996, 0, 0, 0, 0, -0.43010712, 4.999996, -0.06393272, -4.6079507, 0.06393272, 4.6079507, 18.064516, 10.999996)
+}
+point_count = 5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1m4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_birj5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_vkp31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.9918265e-06, 5.9336166)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.9918265e-06, 35.6017)]
+}
+
+[sub_resource type="Animation" id="Animation_0sjjt"]
+resource_name = "bubbles"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6.9918265e-06, 5.9336166), Vector2(0, -19.309)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.49, 2.01, 2.53, 3.02, 3.54, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6.9918265e-06, 35.6017), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602)]
+}
+
+[sub_resource type="Animation" id="Animation_nep7w"]
+resource_name = "bubbles_loop"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.49, 2.01, 2.53, 3.02, 3.54, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6.9918265e-06, 35.6017), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602), Vector2(0, 30), Vector2(0, 35.602)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19.309)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sx4y"]
+_data = {
+&"RESET": SubResource("Animation_vkp31"),
+&"bubbles": SubResource("Animation_0sjjt"),
+&"bubbles_loop": SubResource("Animation_nep7w")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jae7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0sjjt")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_tn1om"]
+_data = [Vector2(0.021598272, 0.28042334), 0.0, 0.0, 0, 0, Vector2(0.36069113, 0.35449737), 0.57640886, 0.57640886, 0, 0, Vector2(0.98056155, 1), 2.1775424, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_efxic"]
+offsets = PackedFloat32Array(0, 0.5217391, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Pot" type="Node2D" unique_id=872421973]
+script = ExtResource("1_0sjjt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1072906640]
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=2081164280 groups=["water-consumer"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D" unique_id=180194490]
+position = Vector2(0, -35)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tn1om")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=471940812]
+position = Vector2(2, -34)
+scale = Vector2(0.557971, 0.557971)
+sprite_frames = SubResource("SpriteFrames_tn1om")
+
+[node name="Stir" type="StaticBody2D" parent="." unique_id=1942773875]
+visible = false
+position = Vector2(-35, -73)
+scale = Vector2(2.325, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Stir" unique_id=864341010]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_vkp31")
+speed_scale = 2.5
+
+[node name="Path2D" type="Path2D" parent="Stir" unique_id=1322986160]
+position = Vector2(0.4301075, 3.9999998)
+curve = SubResource("Curve2D_vkp31")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Stir/Path2D" unique_id=995647475]
+position = Vector2(18.064516, 10.999996)
+rotates = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stir/Path2D/PathFollow2D" unique_id=697961566]
+position = Vector2(0, -24.999994)
+sprite_frames = SubResource("SpriteFrames_d1m4l")
+
+[node name="Bubble" type="StaticBody2D" parent="." unique_id=1465413211]
+visible = false
+
+[node name="Ellipse2(1)" type="Sprite2D" parent="Bubble" unique_id=649333752]
+clip_children = 1
+position = Vector2(-33.000004, -57)
+scale = Vector2(0.5455938, 0.50559384)
+texture = ExtResource("3_vkp31")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bubble/Ellipse2(1)" unique_id=714898976]
+libraries/ = SubResource("AnimationLibrary_6sx4y")
+
+[node name="Node2D" type="Node2D" parent="Bubble/Ellipse2(1)" unique_id=1698102203]
+position = Vector2(6.9918265e-06, 5.9336166)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bubble/Ellipse2(1)/Node2D" unique_id=395917051]
+position = Vector2(6.9918265e-06, 35.6017)
+sprite_frames = SubResource("SpriteFrames_jae7a")
+
+[node name="StirringCountdown" type="Timer" parent="." unique_id=1757499292]
+
+[node name="SmokeCountdown" type="Timer" parent="." unique_id=326846315]
+
+[node name="Smoke" type="Node2D" parent="." unique_id=798062759]
+visible = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Smoke" unique_id=617704826]
+z_index = -1
+position = Vector2(-36, -66)
+amount = 30
+texture = ExtResource("6_nep7w")
+lifetime = 1.46
+preprocess = 0.82
+speed_scale = 1.53
+randomness = 0.06
+emission_shape = 1
+emission_sphere_radius = 31.89
+direction = Vector2(0, 1)
+gravity = Vector2(0, -60)
+angle_min = -180.0
+angle_max = -180.0
+scale_amount_min = 1.2
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_tn1om")
+color = Color(0.4506483, 0.4506483, 0.45064825, 1)
+color_ramp = SubResource("Gradient_efxic")
+
+[connection signal="input_event" from="StaticBody2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="timeout" from="StirringCountdown" to="." method="stirring_failed"]

@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://cty432t1o66bd"]
+
+[ext_resource type="Texture2D" uid="uid://cdb3prco8y72m" path="res://assets/water-empty.png" id="1_chct6"]
+[ext_resource type="Script" uid="uid://eqktl5y41l7s" path="res://components/water_jug.gd" id="1_gd2yo"]
+[ext_resource type="Texture2D" uid="uid://dsamrfjbothav" path="res://assets/water-mask.png" id="2_hblwg"]
+[ext_resource type="Texture2D" uid="uid://7gqt5eipfswe" path="res://assets/water-body.png" id="3_gd2yo"]
+
+[sub_resource type="Animation" id="Animation_hblwg"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(54, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WaterJug:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 54.555)]
+}
+
+[sub_resource type="Animation" id="Animation_iqc65"]
+resource_name = "drain"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterJug:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10070688, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, -1.5341444, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.4886811),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 13.207), Vector2(0, 13.207001), Vector2(0.016076207, 53.99971)]
+}
+
+[sub_resource type="Animation" id="Animation_gd2yo"]
+resource_name = "fill"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WaterJug/WaterJugMask/WaterJugLevel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(54, -0.25, 0, 0.25, 0, 13, -0.4975, 10.25, 0.4975, -10.25),
+"times": PackedFloat32Array(0, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqc65"]
+_data = {
+&"RESET": SubResource("Animation_hblwg"),
+&"drain": SubResource("Animation_iqc65"),
+&"fill": SubResource("Animation_gd2yo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfcek"]
+size = Vector2(57, 57)
+
+[node name="WaterJug" type="Node2D" unique_id=865396040]
+script = ExtResource("1_gd2yo")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2097311781]
+position = Vector2(-1, 29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D" unique_id=1337841529]
+libraries/ = SubResource("AnimationLibrary_iqc65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1010335424]
+position = Vector2(0.5, -28.5)
+shape = SubResource("RectangleShape2D_yfcek")
+
+[node name="WaterJug" type="Sprite2D" parent="Area2D" unique_id=539520018]
+position = Vector2(-1, -29)
+texture = ExtResource("1_chct6")
+
+[node name="WaterJugMask" type="Sprite2D" parent="Area2D/WaterJug" unique_id=1540694961]
+clip_children = 1
+position = Vector2(1, 1)
+texture = ExtResource("2_hblwg")
+
+[node name="WaterJugLevel" type="Sprite2D" parent="Area2D/WaterJug/WaterJugMask" unique_id=1622358730]
+position = Vector2(0, 54.555)
+texture = ExtResource("3_gd2yo")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

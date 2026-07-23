@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bkvs3t0i2h0l2"]
+
+[ext_resource type="Texture2D" uid="uid://c5228cuf68uum" path="res://assets/smoke-particle.png" id="1_1rmdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn1om"]
+size = Vector2(24, 28)
+
+[node name="WaterTap" type="Node2D" unique_id=866408562]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1280521041 groups=["water-dispenser"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1060709031]
+texture = ExtResource("1_1rmdl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1690625963]
+shape = SubResource("RectangleShape2D_tn1om")
