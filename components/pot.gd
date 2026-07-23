@@ -77,6 +77,7 @@ func init_smoke():
 
 func proc_smoke():
 	if water_fed >= water_required:
+		$SmokeCountdown.stop()
 		state = States.IDLE
 
 func init_ruined():
@@ -88,6 +89,11 @@ func init_ruined():
 
 func stirring_failed():
 	print("stirring failed!")
+	state = States.RUINED
+	pass
+	
+func watering_failed():
+	print("Watering failed")
 	state = States.RUINED
 	pass
 

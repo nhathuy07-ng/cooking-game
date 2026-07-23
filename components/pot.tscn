@@ -298,3 +298,4 @@ color_ramp = SubResource("Gradient_efxic")
 
 [connection signal="input_event" from="StaticBody2D/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="StirringCountdown" to="." method="stirring_failed"]
+[connection signal="timeout" from="SmokeCountdown" to="." method="watering_failed"]
