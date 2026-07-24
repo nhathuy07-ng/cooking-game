@@ -7,11 +7,17 @@ var idle_inited = false
 var state = States.NEEDS_FLIPPING
 
 # flipping state
+var flipping_countdown_waittime = 10
 var flipping_inited = false
 
+# ruined state
+var ruined_init = false
+
 func init_ruined():
-	print("pan ruined")
-	state = States.RUINED
+	if not ruined_init:
+		print("pan ruined")
+		$Node2D/Area2D/FlipMeter.needs_flipping = false
+		ruined_init = true
 
 func init_idle():
 	pass
@@ -27,6 +33,9 @@ func flipping_init():
 		$Node2D/Area2D/Smoke.visible = true
 		$Node2D/Area2D/FlipMeter.state = States.IDLE
 		$Node2D/Area2D/FlipMeter.needs_flipping = true
+		
+		$FlippingCountdown.wait_time = flipping_countdown_waittime
+		$FlippingCountdown.start()
 		flipping_inited = true
 
 func flipping_proc():
@@ -39,6 +48,7 @@ func _ready() -> void:
 
 func successful_flip():
 	$Node2D/Area2D/AnimationPlayer.play("flipping")
+	$FlippingCountdown.stop()
 	state = States.IDLE
 	pass
 	
@@ -47,6 +57,7 @@ func unsuccessful_flip(u: Variant ):
 		$Node2D/Area2D/AnimationPlayer.play("flipping_too_low")
 	else:
 		$Node2D/Area2D/AnimationPlayer.play("flipping_too_far")
+		$FlippingCountdown.stop()
 		state = States.RUINED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,5 +68,11 @@ func _physics_process(delta: float) -> void:
 	elif state == States.NEEDS_FLIPPING:
 		flipping_init()
 		flipping_proc()
+	elif state == States.RUINED:
+		init_ruined()
 	
 	pass # Replace with function body.
+
+
+func _on_flipping_countdown_timeout() -> void:
+	state = States.RUINED

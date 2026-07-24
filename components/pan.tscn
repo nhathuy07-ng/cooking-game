@@ -79,7 +79,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_1amd0"]
 resource_name = "flipping_too_far"
-length = 1.5666667
+length = 0.6333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,10 +87,10 @@ tracks/0/path = NodePath("..:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.27, 0.4, 0.58, 1.31, 1.4333333, 1.5333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.27, 0.4, 0.58),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.10471976, -0.10471976, 1.4032447186034405, 0.6876597252857655, -0.08028514559173956, 0.0]
+"values": [0.0, -0.22863813201125757, -0.10471976, 1.4032447186034405]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -99,10 +99,42 @@ tracks/1/path = NodePath("..:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.27, 0.4, 0.59, 1.31, 1.4433333, 1.5333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.27, 0.4, 0.59),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 11.755), Vector2(0, 11.755), Vector2(0, -10), Vector2(0, -10), Vector2(0, -20), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 11.755), Vector2(0, 11.755), Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_ddlb5"]
+resource_name = "flipping_too_far_loop"
+
+[sub_resource type="Animation" id="Animation_u453x"]
+resource_name = "flipping_too_far_loop_v2"
+length = 0.6333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.63),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.4032447186034405, 7.68643]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
 }
 
 [sub_resource type="Animation" id="Animation_7hyks"]
@@ -140,6 +172,8 @@ _data = {
 &"RESET": SubResource("Animation_0xljt"),
 &"flipping": SubResource("Animation_hvh3g"),
 &"flipping_too_far": SubResource("Animation_1amd0"),
+&"flipping_too_far_loop": SubResource("Animation_ddlb5"),
+&"flipping_too_far_loop_v2": SubResource("Animation_u453x"),
 &"flipping_too_low": SubResource("Animation_7hyks"),
 &"idle": SubResource("Animation_ot7yl")
 }
@@ -176,6 +210,7 @@ size = Vector2(56, 29)
 size = Vector2(2, 29)
 
 [node name="Pan" type="Node2D" unique_id=1415316926]
+position = Vector2(72, 0)
 script = ExtResource("1_ddlb5")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1179896228]
@@ -235,10 +270,21 @@ shape = SubResource("RectangleShape2D_efxic")
 position = Vector2(104, 0)
 shape = SubResource("RectangleShape2D_efxic")
 
+[node name="ClickPreventCountdown" type="Timer" parent="Node2D/Area2D/FlipMeter" unique_id=1006952692]
+wait_time = 0.02
+one_shot = true
+
 [node name="Smoke" parent="Node2D/Area2D" unique_id=2073802286 instance=ExtResource("2_hvh3g")]
 visible = true
 position = Vector2(-1, 33)
 
+[node name="FlippingCountdown" type="Timer" parent="." unique_id=91677255]
+one_shot = true
+
 [connection signal="input_event" from="Node2D/Area2D" to="Node2D/Area2D/FlipMeter" method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Node2D/Area2D" to="Node2D/Area2D/FlipMeter" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Area2D" to="Node2D/Area2D/FlipMeter" method="_on_area_2d_mouse_exited"]
 [connection signal="area_entered" from="Node2D/Area2D/FlipMeter/Pointer/Area2D" to="Node2D/Area2D/FlipMeter" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Node2D/Area2D/FlipMeter/Pointer/Area2D" to="Node2D/Area2D/FlipMeter" method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Node2D/Area2D/FlipMeter/ClickPreventCountdown" to="Node2D/Area2D/FlipMeter" method="_on_click_prevent_countdown_timeout"]
+[connection signal="timeout" from="FlippingCountdown" to="." method="_on_flipping_countdown_timeout"]

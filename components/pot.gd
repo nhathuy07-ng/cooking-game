@@ -4,7 +4,7 @@ extends Node2D
 enum States { IDLE, NEEDS_INGREDIENTS, NEEDS_STIRRING, NEEDS_HEAT_REDUCTION, NEEDS_WATER, RUINED, DONE}
 enum Action { IDLE, STIRRING }
 
-var state = States.NEEDS_WATER
+var state = States.NEEDS_STIRRING
 var action = Action.IDLE
 
 # stirring variables
@@ -17,6 +17,7 @@ var stirring_anim_scale_boost = 200
 var stirring_anim_scale_max = 6.0
 var stirring_anim_scale_decel = 10
 var stirring_countdown_waittime = 20
+var stirring_mouse_inside = false
 
 # smoking status variable
 var smoking_init = false
@@ -46,25 +47,29 @@ func init_stirring():
 
 func proc_stirring(delta: float):
 	if action != Action.STIRRING:
-		return
+		#stirring_anim_scale = max(0, stirring_anim_scale - stirring_anim_scale_decel * 2 * delta)
+		pass
 	
-	if stirring_need_primary_key:
-		if Input.is_action_just_pressed("stir_primary"):
-			stirring_anim_scale += stirring_anim_scale_boost * delta
-			stirring_progress += stirring_progress_reward
-			stirring_need_primary_key = not stirring_need_primary_key
-			print(stirring_progress)
 	else:
-		if Input.is_action_just_pressed("stir_secondary"):
+		
+		if stirring_need_primary_key:
+			if Input.is_action_just_pressed("stir_primary") or (stirring_mouse_inside and Input.is_action_just_pressed("m_left", false)):
+				stirring_anim_scale += stirring_anim_scale_boost * delta
+				stirring_progress += stirring_progress_reward
+				stirring_need_primary_key = not stirring_need_primary_key
+				print(stirring_progress)
+		else:
+			if Input.is_action_just_pressed("stir_secondary") or (stirring_mouse_inside and Input.is_action_just_pressed("m_right", false)):
+				
+				stirring_anim_scale += stirring_anim_scale_boost * delta
+				
+				stirring_progress += stirring_progress_reward
+				stirring_need_primary_key = not stirring_need_primary_key
+				print(stirring_progress)
 			
-			stirring_anim_scale += stirring_anim_scale_boost * delta
-			
-			stirring_progress += stirring_progress_reward
-			stirring_need_primary_key = not stirring_need_primary_key
-			print(stirring_progress)
-	
-	stirring_anim_scale = min(stirring_anim_scale, stirring_anim_scale_max)
 	stirring_anim_scale = max(0, stirring_anim_scale - stirring_anim_scale_decel * delta)
+	stirring_anim_scale = min(stirring_anim_scale, stirring_anim_scale_max)
+	
 	#print(stirring_anim_scale)
 	$Stir/AnimationPlayer.speed_scale = stirring_anim_scale
 	
@@ -136,3 +141,12 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 func _disable_stirring(exceptForPot: Node2D):
 	if self != exceptForPot:
 		action = Action.IDLE
+
+func _on_area_2d_mouse_entered() -> void:
+	stirring_mouse_inside = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_mouse_exited() -> void:
+	stirring_mouse_inside = false
+	pass # Replace with function body.

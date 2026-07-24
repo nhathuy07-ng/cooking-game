@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://baxfpichj5f6o"]
+
+[ext_resource type="Script" uid="uid://bo1cfcbcasipr" path="res://components/dish_mount_point.gd" id="1_grtgk"]
+[ext_resource type="Script" uid="uid://b3drick40ip37" path="res://components/mounting_rack.gd" id="1_unb34"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn1om"]
+size = Vector2(577, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxic"]
+size = Vector2(1060.75, 20)
+
+[node name="MountingRack" type="Node2D" unique_id=1453270457]
+script = ExtResource("1_unb34")
+
+[node name="MountPoints" type="Node2D" parent="." unique_id=99137003]
+
+[node name="M1" type="Node2D" parent="MountPoints" unique_id=1068556676]
+position = Vector2(155, 473)
+script = ExtResource("1_grtgk")
+num_dish_served = 55
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M1" unique_id=1100032686]
+position = Vector2(87, 0)
+
+[node name="M2" type="Node2D" parent="MountPoints" unique_id=411155967]
+position = Vector2(411, 473)
+script = ExtResource("1_grtgk")
+num_dish_served = 35
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M2" unique_id=1560374237]
+position = Vector2(87, 0)
+
+[node name="M3" type="Node2D" parent="MountPoints" unique_id=1912966419]
+position = Vector2(675, 473)
+script = ExtResource("1_grtgk")
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M3" unique_id=784536188]
+position = Vector2(87, 0)
+
+[node name="M4" type="Node2D" parent="MountPoints" unique_id=792743644]
+position = Vector2(972, 473)
+script = ExtResource("1_grtgk")
+num_dish_served = 10
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M4" unique_id=136940578]
+position = Vector2(87, 0)
+
+[node name="M5" type="Node2D" parent="MountPoints" unique_id=1777535494]
+position = Vector2(971, 281)
+script = ExtResource("1_grtgk")
+num_dish_served = 75
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M5" unique_id=472243312]
+position = Vector2(87, 0)
+
+[node name="M6" type="Node2D" parent="MountPoints" unique_id=1770369297]
+position = Vector2(674, 285)
+script = ExtResource("1_grtgk")
+num_dish_served = 75
+
+[node name="PanMount" type="Node2D" parent="MountPoints/M6" unique_id=956085107]
+position = Vector2(87, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MountPoints" unique_id=1975111198]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MountPoints/StaticBody2D" unique_id=812945672]
+position = Vector2(822.5, 309)
+shape = SubResource("RectangleShape2D_tn1om")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MountPoints/StaticBody2D" unique_id=1933359207]
+position = Vector2(593.625, 493)
+shape = SubResource("RectangleShape2D_efxic")

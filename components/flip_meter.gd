@@ -11,6 +11,8 @@ var safezone_scale = 0.7
 @export var needs_flipping = false
 @export var state = FlipStates.IDLE
 var within_safezone = false
+var mouse_inside = false
+var click_prevent = false
 
 signal report_successful_flip()
 signal report_unsuccessful_flip(s: Variant)
@@ -77,7 +79,7 @@ func meter_proc(delta: float):
 	if state == FlipStates.MOVING:
 		$Pointer.position.x += speed * delta * direction
 		
-		if Input.is_action_just_pressed("flip_meter_accept"):
+		if Input.is_action_just_pressed("flip_meter_accept") or mouse_inside and not click_prevent and (Input.is_action_just_pressed("m_left") or Input.is_action_just_pressed("m_right")):
 			if within_safezone:
 				safezone_hit()
 			else:
@@ -117,11 +119,30 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		return
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if (event is InputEventMouseButton) and event.pressed and needs_flipping:
+	if (event is InputEventMouseButton) and event.pressed and needs_flipping and state == FlipStates.IDLE:
 		activate()
 		Globals.deactivateFillMeterExcept.emit(self)
+		# add a click buffer here
+		click_prevent = true
+		$ClickPreventCountdown.start()
 		
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("safezone"):
 		within_safezone = false
+
+
+func _on_area_2d_mouse_entered() -> void:
+	mouse_inside = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_mouse_exited() -> void:
+	mouse_inside = false
+	
+	pass # Replace with function body.
+
+
+func _on_click_prevent_countdown_timeout() -> void:
+	click_prevent = false
+	pass # Replace with function body.

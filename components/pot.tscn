@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://bgk4okco3aq1s" path="res://assets/Ellipse 2 (1).png" id="3_vkp31"]
 [ext_resource type="Texture2D" uid="uid://jt5wwmh3k6l1" path="res://assets/bubbles.png" id="4_0sjjt"]
 [ext_resource type="PackedScene" uid="uid://drappq2xkyf14" path="res://components/smoke.tscn" id="6_nep7w"]
+[ext_resource type="Script" uid="uid://bqi13ft22dc7f" path="res://components/pot_lifecycle_management.gd" id="7_6sx4y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn1om"]
 radius = 38.0
-height = 182.0
+height = 116.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tn1om"]
 animations = [{
@@ -210,7 +211,7 @@ script = ExtResource("1_0sjjt")
 [node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=2081164280 groups=["water-consumer"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D" unique_id=180194490]
-position = Vector2(0, -35)
+position = Vector2(-35, -35)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tn1om")
 
@@ -261,11 +262,18 @@ position = Vector2(6.9918265e-06, 35.6017)
 sprite_frames = SubResource("SpriteFrames_jae7a")
 
 [node name="StirringCountdown" type="Timer" parent="." unique_id=1757499292]
+one_shot = true
 
 [node name="SmokeCountdown" type="Timer" parent="." unique_id=326846315]
+one_shot = true
 
 [node name="Smoke" parent="." unique_id=2073802286 instance=ExtResource("6_nep7w")]
 
+[node name="LifecycleManagement" type="Node2D" parent="." unique_id=700238295]
+script = ExtResource("7_6sx4y")
+
 [connection signal="input_event" from="StaticBody2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="timeout" from="StirringCountdown" to="." method="stirring_failed"]
 [connection signal="timeout" from="SmokeCountdown" to="." method="watering_failed"]
