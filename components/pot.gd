@@ -1,6 +1,7 @@
 extends Node2D
 
-enum States { IDLE, NEEDS_INGREDIENTS, NEEDS_STIRRING, NEEDS_HEAT_REDUCTION, NEEDS_WATER, NEEDS_EXTINGUISHER, RUINED}
+# basic impl done: needs stirring, needs water, ruined
+enum States { IDLE, NEEDS_INGREDIENTS, NEEDS_STIRRING, NEEDS_HEAT_REDUCTION, NEEDS_WATER, RUINED, DONE}
 enum Action { IDLE, STIRRING }
 
 var state = States.NEEDS_WATER
@@ -15,7 +16,7 @@ var stirring_anim_scale = 0.0
 var stirring_anim_scale_boost = 200
 var stirring_anim_scale_max = 6.0
 var stirring_anim_scale_decel = 10
-var stirring_countdown_waittime = 10
+var stirring_countdown_waittime = 20
 
 # smoking status variable
 var smoking_init = false
@@ -26,6 +27,7 @@ var water_fed = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.fillWater.connect(fill_water)
+	Globals.forceStirringIdle.connect(_disable_stirring)
 
 func fill_water(area: Area2D, qty: float):
 	if (area == $StaticBody2D/Area2D):
@@ -43,6 +45,9 @@ func init_stirring():
 		stirring_init = true
 
 func proc_stirring(delta: float):
+	if action != Action.STIRRING:
+		return
+	
 	if stirring_need_primary_key:
 		if Input.is_action_just_pressed("stir_primary"):
 			stirring_anim_scale += stirring_anim_scale_boost * delta
@@ -89,11 +94,13 @@ func init_ruined():
 
 func stirring_failed():
 	print("stirring failed!")
+	$StirringCountdown.stop()
 	state = States.RUINED
 	pass
 	
 func watering_failed():
 	print("Watering failed")
+	$SmokeCountdown.stop()
 	state = States.RUINED
 	pass
 
@@ -110,11 +117,9 @@ func _process(delta: float) -> void:
 		proc_idle(delta)
 	elif state == States.NEEDS_STIRRING:
 		$Stir.visible = false
-	
-		if action == Action.STIRRING:
-			$Stir.visible = true
-			init_stirring()
-			proc_stirring(delta)
+		$Stir.visible = true
+		init_stirring()
+		proc_stirring(delta)
 	elif state == States.RUINED:
 		init_ruined()
 	elif state == States.NEEDS_WATER:
@@ -125,5 +130,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if (event is InputEventMouseButton) and event.pressed:
 		if state == States.NEEDS_STIRRING:
 			action = Action.STIRRING
-			
+			Globals.forceStirringIdle.emit(self)
 	pass # Replace with function body.
+
+func _disable_stirring(exceptForPot: Node2D):
+	if self != exceptForPot:
+		action = Action.IDLE

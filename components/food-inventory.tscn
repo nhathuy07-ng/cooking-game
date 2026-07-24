@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://1md3heeb1a4v"]
+
+[ext_resource type="Texture2D" uid="uid://bn1yg15l1vxpf" path="res://assets/shelf.png" id="1_bytxh"]
+[ext_resource type="Script" uid="uid://c4a2ykih2pqn5" path="res://components/food_inventory.gd" id="1_j5xg6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn1om"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn1om"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bytxh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FoodInventory" type="Node2D" unique_id=509870532]
+script = ExtResource("1_j5xg6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1779765003]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=904857494]
+shape = SubResource("RectangleShape2D_tn1om")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1157283803]
+sprite_frames = SubResource("SpriteFrames_tn1om")

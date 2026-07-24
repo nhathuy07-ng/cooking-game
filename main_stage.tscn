@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bib3poxl0wgeh" path="res://components/pot.tscn" id="1_vscqt"]
 [ext_resource type="PackedScene" uid="uid://cty432t1o66bd" path="res://components/water-jug.tscn" id="2_yfcek"]
-[ext_resource type="PackedScene" uid="uid://bkvs3t0i2h0l2" path="res://assets/water-tap.tscn" id="3_gh3nl"]
+[ext_resource type="PackedScene" uid="uid://bkvs3t0i2h0l2" path="res://components/water-tap.tscn" id="3_gh3nl"]
+[ext_resource type="PackedScene" uid="uid://jt887w78bd7j" path="res://components/pan.tscn" id="4_uwveg"]
 
 [node name="MainStage" type="Node2D" unique_id=1461781538]
 
@@ -17,3 +18,9 @@ position = Vector2(416, 233)
 
 [node name="WaterTap" parent="." unique_id=866408562 instance=ExtResource("3_gh3nl")]
 position = Vector2(527, 339)
+
+[node name="Pan" parent="." unique_id=1415316926 instance=ExtResource("4_uwveg")]
+position = Vector2(216, 448)
+
+[node name="Pan2" parent="." unique_id=1699193341 instance=ExtResource("4_uwveg")]
+position = Vector2(290, 567)

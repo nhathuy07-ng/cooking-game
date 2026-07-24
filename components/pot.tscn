@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://8xhe74cqhdq7" path="res://assets/stirring-stuff.png" id="2_birj5"]
 [ext_resource type="Texture2D" uid="uid://bgk4okco3aq1s" path="res://assets/Ellipse 2 (1).png" id="3_vkp31"]
 [ext_resource type="Texture2D" uid="uid://jt5wwmh3k6l1" path="res://assets/bubbles.png" id="4_0sjjt"]
-[ext_resource type="Texture2D" uid="uid://c5228cuf68uum" path="res://assets/smoke-particle.png" id="6_nep7w"]
+[ext_resource type="PackedScene" uid="uid://drappq2xkyf14" path="res://components/smoke.tscn" id="6_nep7w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tn1om"]
 radius = 38.0
@@ -202,14 +202,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Curve" id="Curve_tn1om"]
-_data = [Vector2(0.021598272, 0.28042334), 0.0, 0.0, 0, 0, Vector2(0.36069113, 0.35449737), 0.57640886, 0.57640886, 0, 0, Vector2(0.98056155, 1), 2.1775424, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_efxic"]
-offsets = PackedFloat32Array(0, 0.5217391, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
 [node name="Pot" type="Node2D" unique_id=872421973]
 script = ExtResource("1_0sjjt")
 
@@ -272,29 +264,7 @@ sprite_frames = SubResource("SpriteFrames_jae7a")
 
 [node name="SmokeCountdown" type="Timer" parent="." unique_id=326846315]
 
-[node name="Smoke" type="Node2D" parent="." unique_id=798062759]
-visible = false
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Smoke" unique_id=617704826]
-z_index = -1
-position = Vector2(-36, -66)
-amount = 30
-texture = ExtResource("6_nep7w")
-lifetime = 1.46
-preprocess = 0.82
-speed_scale = 1.53
-randomness = 0.06
-emission_shape = 1
-emission_sphere_radius = 31.89
-direction = Vector2(0, 1)
-gravity = Vector2(0, -60)
-angle_min = -180.0
-angle_max = -180.0
-scale_amount_min = 1.2
-scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_tn1om")
-color = Color(0.4506483, 0.4506483, 0.45064825, 1)
-color_ramp = SubResource("Gradient_efxic")
+[node name="Smoke" parent="." unique_id=2073802286 instance=ExtResource("6_nep7w")]
 
 [connection signal="input_event" from="StaticBody2D/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="StirringCountdown" to="." method="stirring_failed"]
