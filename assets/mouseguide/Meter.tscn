@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://do5xrrfm8f86w"]
+
+[ext_resource type="Texture2D" uid="uid://b36hf66ju6mfn" path="res://assets/pan-light.png" id="1_53uuw"]
+[ext_resource type="Texture2D" uid="uid://coqxf82bc6eei" path="res://assets/new/pot_0003.png" id="2_afe45"]
+[ext_resource type="Script" uid="uid://dnk3kywg58uq4" path="res://assets/mouseguide/pan_remaining_tracker.gd" id="2_met6j"]
+[ext_resource type="Script" uid="uid://brk5alks8lbfv" path="res://assets/mouseguide/pOT_remaining_tracker.gd" id="4_dl21t"]
+
+[node name="Meter" type="Node2D" unique_id=2037940551]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=946495054]
+
+[node name="PanLight" type="Sprite2D" parent="." unique_id=758553476]
+position = Vector2(11.737803, 10.039398)
+rotation = 0.8260304
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_53uuw")
+script = ExtResource("2_met6j")
+hp = 1
+
+[node name="PanLight2" type="Sprite2D" parent="." unique_id=934849485]
+position = Vector2(46.999996, 10)
+rotation = 0.8260304
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_53uuw")
+script = ExtResource("2_met6j")
+hp = 5
+
+[node name="PanLight3" type="Sprite2D" parent="." unique_id=40578763]
+position = Vector2(38, 9.999999)
+rotation = 0.8260304
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_53uuw")
+script = ExtResource("2_met6j")
+hp = 4
+
+[node name="PanLight4" type="Sprite2D" parent="." unique_id=1648133937]
+position = Vector2(28.737804, 10.039398)
+rotation = 0.8260304
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_53uuw")
+script = ExtResource("2_met6j")
+hp = 3
+
+[node name="PanLight5" type="Sprite2D" parent="." unique_id=2143031099]
+position = Vector2(19.999998, 10.039398)
+rotation = 0.8260304
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_53uuw")
+script = ExtResource("2_met6j")
+hp = 2
+
+[node name="Pot0003" type="Sprite2D" parent="." unique_id=284015223]
+position = Vector2(14, 26)
+rotation = 0.7853982
+scale = Vector2(0.050317463, 0.050317463)
+texture = ExtResource("2_afe45")
+script = ExtResource("4_dl21t")
+hp = 1
+
+[node name="Pot0004" type="Sprite2D" parent="." unique_id=1128713232]
+position = Vector2(24, 26)
+rotation = 0.7853982
+scale = Vector2(0.050317463, 0.050317463)
+texture = ExtResource("2_afe45")
+script = ExtResource("4_dl21t")
+hp = 2
+
+[node name="Pot0005" type="Sprite2D" parent="." unique_id=243508522]
+position = Vector2(35, 26)
+rotation = 0.7853982
+scale = Vector2(0.050317463, 0.050317463)
+texture = ExtResource("2_afe45")
+script = ExtResource("4_dl21t")
+hp = 3
+
+[node name="Pot0006" type="Sprite2D" parent="." unique_id=1303749194]
+position = Vector2(45, 26)
+rotation = 0.7853982
+scale = Vector2(0.050317463, 0.050317463)
+texture = ExtResource("2_afe45")
+script = ExtResource("4_dl21t")
+hp = 4
+
+[node name="Pot0007" type="Sprite2D" parent="." unique_id=1282293975]
+position = Vector2(55, 26)
+rotation = 0.7853982
+scale = Vector2(0.050317463, 0.050317463)
+texture = ExtResource("2_afe45")
+script = ExtResource("4_dl21t")
+hp = 5

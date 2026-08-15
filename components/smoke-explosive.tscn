@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ce2v5wuu2tawx"]
+
+[ext_resource type="Texture2D" uid="uid://hbixodpeijms" path="res://assets/8-2-smoke-effect-free-png-image.png" id="1_tdhi4"]
+
+[sub_resource type="Curve" id="Curve_efxic"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 100), 355.7704, 355.7704, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_tn1om"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.52, 0.28070182), 0.98684156, 0.98684156, 0, 0, Vector2(0.89, 0.9824562), 4.2936277, 3.3793013, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_jae7a"]
+offsets = PackedFloat32Array(0, 0.3759124, 0.49270073, 1)
+colors = PackedColorArray(0.47788018, 0.47788012, 0.47788012, 0, 0.45840496, 0.45840508, 0.4584049, 0.91111106, 0.55295557, 0.55295557, 0.55295545, 1, 1, 1, 1, 0)
+
+[node name="SmokeExplosive" type="Node2D" unique_id=1068025465]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1334680616]
+emitting = false
+amount = 1
+texture = ExtResource("1_tdhi4")
+lifetime = 1.24
+one_shot = true
+speed_scale = 1.41
+explosiveness = 0.59
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 2.63
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.37
+initial_velocity_max = 19.11
+radial_accel_min = 10.19
+radial_accel_max = 10.19
+damping_max = 5.732
+damping_curve = SubResource("Curve_efxic")
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_tn1om")
+color = Color(0.7539844, 0.75398374, 0.75398386, 1)
+color_ramp = SubResource("Gradient_jae7a")

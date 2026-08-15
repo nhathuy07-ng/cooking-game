@@ -6,8 +6,8 @@ enum FlipStates { IDLE, MOVING, RESET, RETRY }
 enum UnsuccessfulState {TOO_LOW, TOO_HIGH}
 
 var direction = 1
-var speed = 300
-var safezone_scale = 0.7
+@export var speed = 300
+@export var safezone_scale = 0.7
 @export var needs_flipping = false
 @export var state = FlipStates.IDLE
 var within_safezone = false
@@ -75,6 +75,10 @@ func retry():
 		state = FlipStates.MOVING
 
 func meter_proc(delta: float):
+	
+	if !needs_flipping:
+		state = FlipStates.IDLE
+	
 	self.visible = true
 	if state == FlipStates.MOVING:
 		$Pointer.position.x += speed * delta * direction

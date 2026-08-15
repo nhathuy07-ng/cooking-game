@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://culrkrpty6f3l"
-path="res://.godot/imported/pot.png-62eff7dca8403d02a61a5a45caf15e6e.ctex"
+uid="uid://331b8ddxcwly"
+path="res://.godot/imported/button-guides_0003.png-5fde77cff638d8e084cc1478b5232121.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pot.png"
-dest_files=["res://.godot/imported/pot.png-62eff7dca8403d02a61a5a45caf15e6e.ctex"]
+source_file="res://assets/mouseguide/button-guides_0003.png"
+dest_files=["res://.godot/imported/button-guides_0003.png-5fde77cff638d8e084cc1478b5232121.ctex"]
 
 [params]
 

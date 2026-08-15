@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu7j0yjs1kj5r"
-path="res://.godot/imported/food1.png-99584e62d3e5c6b6d7ca68403a734e15.ctex"
+uid="uid://dxnlwcrbobwnb"
+path="res://.godot/imported/button-guides_0001.png-f140b910ea3ed69b86c1933a047b155c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ingredients/food1.png"
-dest_files=["res://.godot/imported/food1.png-99584e62d3e5c6b6d7ca68403a734e15.ctex"]
+source_file="res://assets/mouseguide/button-guides_0001.png"
+dest_files=["res://.godot/imported/button-guides_0001.png-f140b910ea3ed69b86c1933a047b155c.ctex"]
 
 [params]
 

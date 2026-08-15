@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://de8u1badfd0my"]
+
+[ext_resource type="Script" uid="uid://detej10cxfok2" path="res://components/ingredient_drawer.gd" id="1_mqqgv"]
+[ext_resource type="Texture2D" uid="uid://crynasfhvi2dx" path="res://assets/props/drawer_0001.png" id="1_th8ss"]
+[ext_resource type="Texture2D" uid="uid://bwkk11qli8ivw" path="res://assets/props/drawer_0002.png" id="2_c4j7x"]
+[ext_resource type="Texture2D" uid="uid://eqyrmfeyfbe7" path="res://assets/ingredients/carrot.png" id="3_k7s6b"]
+[ext_resource type="Texture2D" uid="uid://bh1lig6f3ddh5" path="res://assets/ingredients/chilli.png" id="4_mqqgv"]
+[ext_resource type="Texture2D" uid="uid://ctod6aw00wh2" path="res://assets/ingredients/leaf-onion.png" id="5_xe11s"]
+[ext_resource type="Texture2D" uid="uid://bsv7flys12hnk" path="res://assets/ingredients/mushroom.png" id="6_b822c"]
+[ext_resource type="Texture2D" uid="uid://bp7s7rb2niajp" path="res://assets/ingredients/potato.png" id="7_rpt5v"]
+[ext_resource type="Texture2D" uid="uid://bbl3jibl6tbfm" path="res://assets/ingredients/tomato.png" id="8_ao14u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fa17"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_th8ss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c4j7x")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn1om"]
+size = Vector2(420.19547, 166.12378)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn1om"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k7s6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mqqgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xe11s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b822c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rpt5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ao14u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="IngredientDrawer" type="Node2D" unique_id=1824838648]
+position = Vector2(-1, 1)
+script = ExtResource("1_mqqgv")
+ingredient = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601633209]
+position = Vector2(0, -91.99999)
+scale = Vector2(0.614, 0.614)
+sprite_frames = SubResource("SpriteFrames_5fa17")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=962972512]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=445218474]
+position = Vector2(4.6596456e-06, 66.77522)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_tn1om")
+
+[node name="Node2D" type="Node2D" parent="AnimatedSprite2D" unique_id=1926913119]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D/Node2D" unique_id=650666377]
+position = Vector2(1.6286674, 63.51789)
+scale = Vector2(0.645, 0.645)
+sprite_frames = SubResource("SpriteFrames_tn1om")
+frame_progress = 0.669453
+
+[connection signal="mouse_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]

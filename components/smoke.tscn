@@ -11,11 +11,9 @@ offsets = PackedFloat32Array(0, 0.5217391, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Smoke" type="Node2D" unique_id=2073802286]
-visible = false
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1029857377]
 z_index = -1
-position = Vector2(-36, -66)
 amount = 30
 texture = ExtResource("1_joqpw")
 lifetime = 1.46
@@ -31,5 +29,5 @@ angle_max = -180.0
 scale_amount_min = 1.2
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_tn1om")
-color = Color(0.4506483, 0.4506483, 0.45064825, 1)
+color = Color(0.47397572, 0.47397578, 0.4739756, 1)
 color_ramp = SubResource("Gradient_efxic")

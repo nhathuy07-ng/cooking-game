@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://naoj7iki3vdm"]
+
+[node name="Gameover" type="Node2D" unique_id=1295650786]
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=173090383]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1831831363]
+offset_left = 40.0
+offset_top = 47.0
+offset_right = 838.0
+offset_bottom = 230.0
+theme_override_font_sizes/normal_font_size = 33
+text = "Game Over
+Reload this page or relaunch game to play again."

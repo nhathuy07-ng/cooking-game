@@ -1,16 +1,40 @@
 [gd_scene format=3 uid="uid://bkvs3t0i2h0l2"]
 
-[ext_resource type="Texture2D" uid="uid://c5228cuf68uum" path="res://assets/smoke-particle.png" id="1_1rmdl"]
+[ext_resource type="Script" uid="uid://cpl4i74dvnloe" path="res://components/water_tap.gd" id="1_6afsa"]
+[ext_resource type="Texture2D" uid="uid://cyayyvqrxgas2" path="res://assets/props/dispenser_0001.png" id="1_brknt"]
+[ext_resource type="Texture2D" uid="uid://dawbvxgnd4ql" path="res://assets/props/dispenser_0002.png" id="2_6afsa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tn1om"]
-size = Vector2(24, 28)
+size = Vector2(81, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tn1om"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_brknt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6afsa")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="WaterTap" type="Node2D" unique_id=866408562]
+position = Vector2(0, -96)
+script = ExtResource("1_6afsa")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1280521041 groups=["water-dispenser"]]
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1060709031]
-texture = ExtResource("1_1rmdl")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1690625963]
+position = Vector2(-0.5, 27)
 shape = SubResource("RectangleShape2D_tn1om")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1777307616]
+position = Vector2(-1, -1)
+scale = Vector2(0.614, 0.614)
+sprite_frames = SubResource("SpriteFrames_tn1om")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
